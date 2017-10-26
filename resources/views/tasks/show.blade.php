@@ -7,4 +7,3 @@
         {{ $task->body }}
     </body>
 </html>
-    
