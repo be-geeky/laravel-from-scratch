@@ -11,22 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-	$tasks = DB::table('tasks')->latest()->get();
+use App\Task;
 
-    return view('welcome', [
+Route::get('/tasks', function () {	
+	$tasks = Task::all();	
+    return view('tasks.index', [
     		'name' => 'world',
     		'tasks' => $tasks
     	]);
 });
 
-Route::get('/tasks/{task}', function ($id) {
-	
-	$tasks = DB::table('tasks')->latest()->find($id);
+Route::get('/tasks/{task}', function ($id) {	
+	 
+	$task = Task::find($id);	
 
-	dd($tasks);
-    return view('welcome', [
-    		'name' => 'world',
-    		'tasks' => $tasks
+	
+    return view('tasks.show', [
+    	'task' => $task
     	]);
 });
